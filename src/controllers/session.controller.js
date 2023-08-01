@@ -56,7 +56,10 @@ class SessionController {
         return res.cookie(JWT_COOKIE_NAME, token).redirect("/products");
       } catch (error) {
         console.error(`SessionController: No se puede procesar la petición POST '${error}'`);
-        return res.status(404).json({ status: "error", message: `SessionController: No se puede procesar la petición POST '${error}'` });
+        return res.render("user/loginerror", {
+          error: "(401): Credenciales inválidas",
+        });
+       // return res.status(404).json({ status: "error", message: `SessionController: No se puede procesar la petición POST '${error}'` });
       }
     }
 

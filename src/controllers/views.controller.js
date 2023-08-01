@@ -6,8 +6,7 @@ import productsModel from "../dao/models/products.model.js";
 class ViewsController {
     constructor(){
         this.userModel = UserModel;
-        this.productsModel = productsModel;
-       
+        this.productsModel = productsModel; 
     }
 
     getChatView = async (req,res) => { 
