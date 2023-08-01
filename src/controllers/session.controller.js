@@ -4,7 +4,7 @@ import cartsModel from "../dao/models/carts.model.js";
 import { appConfig } from "../config/config.js";
 const { JWT_COOKIE_NAME } = appConfig;
 
-class sessionController {
+class SessionController {
     constructor(){
         this.userModel = UserModel;
         this.cartsModel = cartsModel;
@@ -151,5 +151,5 @@ class sessionController {
 }
 
 
-export default sessionController
+export default SessionController
 

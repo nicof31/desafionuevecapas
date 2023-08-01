@@ -7,7 +7,6 @@ class CartService {
         this.cartModel = cartsModel;
         this.userModel = UserModel;
         this.cartsManagerMongo = new CartsManagerMongo();
-
     }
 
     getAllCarts = async (req) => { 
@@ -18,7 +17,7 @@ class CartService {
             }
             return cartsFilter;
         } catch (error) {
-            console.log("cartService: no se pudo obtener carts" + error)
+            console.log(`cartService: no se pudo obtener carts: ${error}`)
             throw error;
         }
     }
@@ -40,7 +39,7 @@ class CartService {
           }
         } catch (error) {
           console.log(`CartService: no se pudo procesar la solcitud: ${error}`);
-          return res.status(404).json({ status: "error", message: `CartService: no se pudo procesar la solcitud ${error}` });
+          throw error;
         }
     }
 
@@ -96,7 +95,8 @@ class CartService {
                 }
             } catch (error) {
               console.log(`No se puede procesar la peticion PUT '${error}'`);
-              return res.status(404).json({status:"error",message: `cartService: No se puede procesar la peticion PUT '${error}'`});
+              throw error;
+              //return res.status(404).json({status:"error",message: `cartService: No se puede procesar la peticion PUT '${error}'`});
             }
     }
 
@@ -115,7 +115,8 @@ class CartService {
                 }
             } catch (error) {
               console.log(`cartService: No se puede procesar la peticion PUT '${error}'`);
-              return res.status(404).json({status:"error",message: `cartService: No se puede procesar la peticion PUT '${error}'`});
+              //return res.status(404).json({status:"error",message: `cartService: No se puede procesar la peticion PUT '${error}'`});
+              throw error;
             }
     }
 
@@ -136,7 +137,8 @@ class CartService {
         }
           } catch (error) {
             console.log(`cartService: No se puede procesar la peticion Delete '${error}'`);
-            return res.status(404).json({status:"error",message: `cartService: No se puede procesar la peticion Delete '${error}'`});
+            throw error;
+            //return res.status(404).json({status:"error",message: `cartService: No se puede procesar la peticion Delete '${error}'`});
           }
   }
 
@@ -144,7 +146,6 @@ class CartService {
       try {
         const idCartDelete = req.params.cid;
         const idProductsCartDelete = req.params.pid;
-        // Busco id de carts si existe en carts.json
         const cartSearchDelete = await this.cartModel.find();
         const searchIdCartDelete = cartSearchDelete.find(({ _id }) => _id == idCartDelete );
         if (!searchIdCartDelete) {
@@ -164,7 +165,8 @@ class CartService {
         }
           } catch (error) {
             console.log(`cartService: No se puede procesar la peticion Delete '${error}'`);
-            return res.status(404).json({status:"error",message: `cartService: No se puede procesar la peticion Delete '${error}'`});
+            //return res.status(404).json({status:"error",message: `cartService: No se puede procesar la peticion Delete '${error}'`});
+            throw error;
           }
   }
 
