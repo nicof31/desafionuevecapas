@@ -25,6 +25,7 @@ cartItemSchema.methods.calculateTotalPrice = function () {
 cartsSchema.methods.calculateTotalCartPrice = function () {
   this.totalCartPrice = this.products.reduce(
     (total, product) => total + product.totalPrice,
+    0
   );
 };
 
